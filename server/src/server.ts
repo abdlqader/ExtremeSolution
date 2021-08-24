@@ -1,5 +1,6 @@
 import { App } from './app';
 import { RouteBase } from './core/routes/RouteBase';
+require('dotenv').config();
 
 const PORT = process.env.PORT_NUMBER || 3000;
 const HOST = process.env.HOST_NAME || 'localhost';
