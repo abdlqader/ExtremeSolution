@@ -1,10 +1,11 @@
 var jwt = require('jsonwebtoken')
 export class JWT {
-    public issue = (payload:info,expireIn:number):string =>{
+    expireIn:number = 60*60 //hour
+    public issue = (payload:info):string =>{
         return jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            expireIn
+            {expiresIn:this.expireIn}
         )
     }
     public decode = (token:string):info=>{
