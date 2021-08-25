@@ -1,4 +1,4 @@
-import { Table, Model, Column, CreatedAt, UpdatedAt } from 'sequelize-typescript'
+import { Table, Model, Column, CreatedAt, UpdatedAt, Unique } from 'sequelize-typescript'
 
 export default interface User {
   id?: number;
@@ -12,6 +12,7 @@ export default interface User {
 
 @Table 
 export default class User extends Model{
+  @Unique
   @Column
   name!: string;
 
