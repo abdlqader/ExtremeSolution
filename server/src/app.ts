@@ -8,8 +8,8 @@ export class App {
   private app: express.Application;
   constructor(Route: RouteBase[]) {
     this.app = express();
-    this.initializeRoute(Route);
     this.initializeMiddlewares();
+    this.initializeRoute(Route);
   }
 
   public listen(port: string | number, host?: string) {

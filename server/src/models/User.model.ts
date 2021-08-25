@@ -1,13 +1,13 @@
 import { Table, Model, Column, CreatedAt, UpdatedAt } from 'sequelize-typescript'
 
 export default interface User {
-  id: number;
+  id?: number;
   name: string;
-  phone: number;
+  phone: string;
   password: string;
-  isAdmin : boolean;
-  creationDate: Date;
-  updatedOn: Date;
+  role : string;
+  creationDate?: Date;
+  updatedOn?: Date;
 }
 
 @Table 
@@ -16,7 +16,7 @@ export default class User extends Model{
   name!: string;
 
   @Column
-  phone!: number;
+  phone!: string;
 
   @Column
   password!: string;
@@ -26,10 +26,10 @@ export default class User extends Model{
 
   @CreatedAt
   @Column
-  creationDate!: Date;
+  creationDate?: Date;
 
   @UpdatedAt
   @Column
-  updatedOn!: Date;
+  updatedOn?: Date;
 
 }
