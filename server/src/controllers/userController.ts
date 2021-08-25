@@ -30,7 +30,9 @@ export class UserController {
           user.password
         );
         if (samePassword)
-          return this.jwt.issue({ id: user.id as number, role: user.role });
+          return this.jwt.issue({
+            payload: { id: user.id as number, role: user.role },
+          });
         else
           throw {
             message: 'username or password is wrong',
