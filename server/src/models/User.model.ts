@@ -3,7 +3,7 @@ import { Table, Model, Column, CreatedAt, UpdatedAt } from 'sequelize-typescript
 export default interface User {
   id: number;
   name: string;
-  email: string;
+  phone: number;
   password: string;
   isAdmin : boolean;
   creationDate: Date;
@@ -16,7 +16,7 @@ export default class User extends Model{
   name!: string;
 
   @Column
-  email!: string;
+  phone!: number;
 
   @Column
   password!: string;
