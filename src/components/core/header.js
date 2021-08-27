@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const Header = ({ name, role }) => {
   return (
-    <Navbar className="shadow-sm p-0 mb-5 bg-white rounded">
+    <Navbar className="shadow-sm p-0 bg-white rounded">
       <Container>
         <Navbar.Brand>Louvre</Navbar.Brand>
         <Navbar.Toggle />

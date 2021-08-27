@@ -15,13 +15,13 @@ const Guest = () => {
   return (
     <div className="bg-light">
       <Header />
-      <Container>
+      <Container className="mt-5">
         <CardColumns>
           {data.map((character) => (
             <SingleCard
               key={character.id}
               id={character.id}
-              artist={character.name}
+              artist={character.artist}
               image={character.image}
             />
           ))}
