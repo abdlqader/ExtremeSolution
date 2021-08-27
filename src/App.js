@@ -13,8 +13,13 @@ function App() {
       <Router>
         <Switch>
           <Route path="/login" component={Auth} />
-          <ProtectedRoute exact path="/admin" component={Admin} />
-          <ProtectedRoute exact path="/" component={Guest} />
+          <ProtectedRoute
+            exact
+            path="/admin"
+            routeLink="admin"
+            component={Admin}
+          />
+          <ProtectedRoute exact path="/" routeLink="guest" component={Guest} />
           <Route path="*" exact={true} component={NotFound404} />
         </Switch>
       </Router>

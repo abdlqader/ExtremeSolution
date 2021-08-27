@@ -1,30 +1,16 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ADMIN_TYPE, GUEST_TYPE } from '../../../services/types';
+import { check } from '../../../services/authHelper';
 
 function ProtectedRoute({
   component: Component,
   authToken,
   role,
+  routeLink,
   ...restOfProps
 }) {
-  let redirect_url = '/login';
-  let roleMatched = false;
-  switch (role) {
-    case GUEST_TYPE:
-      redirect_url = '/';
-      roleMatched = true;
-      break;
-    case ADMIN_TYPE:
-      redirect_url = '/admin';
-      roleMatched = true;
-      break;
-    default:
-      redirect_url = '/login';
-      roleMatched = false;
-      break;
-  }
+  let { redirect_url, roleMatched } = check(role, routeLink);
 
   return (
     <Route
