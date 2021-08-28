@@ -21,7 +21,7 @@ const Guest = ({ arts, token, fetchArts }) => {
               key={art.id}
               id={art.id}
               artist={art.artist}
-              image={art.image}
+              image={art.picture}
             />
           ))}
         </CardColumns>

@@ -1,37 +1,50 @@
+import Button from 'react-bootstrap/Button';
 import React, { Fragment } from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteArt } from '../../actions/artActions';
 
-const ArtTable = () => {
+const ArtTable = ({ arts, token, deleteArt }) => {
+  const removeArt = (id) => {
+    deleteArt({ token, id });
+  };
   return (
     <Fragment>
       <thead className="bg-light">
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Item</th>
+          <th>Artist</th>
+          <th>description</th>
+          <th>Creation Date</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {arts.map((art) => (
+          <tr key={art.id}>
+            <td>{art.picture}</td>
+            <td>{art.artist}</td>
+            <td>{art.description}</td>
+            <td>{moment(art.creationDate).format('MMMM Do YYYY, h:mm a')}</td>
+            <td>
+              <Button variant="danger" onClick={() => removeArt(art.id)}>
+                Delete
+              </Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Fragment>
   );
 };
-
-export default ArtTable;
+ArtTable.prototype = {
+  arts: PropTypes.array.isRequired,
+};
+const mapDispatchToProps = (dispatch) => ({
+  deleteArt: (authData) => dispatch(deleteArt(authData)),
+});
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ArtTable);

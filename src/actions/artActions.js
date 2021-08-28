@@ -34,9 +34,13 @@ export const updateArt =
   ({ token, art }) =>
   (dispatch) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/art`, {
-        headers: { Authorization: `${token}`, data: art },
-      })
+      .put(
+        `${process.env.REACT_APP_API_URL}/art`,
+        { user: { ...art } },
+        {
+          headers: { Authorization: `${token}` },
+        }
+      )
       .then((response) => {
         dispatch({
           type: UPDATE_ART,
@@ -52,7 +56,8 @@ export const deleteArt =
   (dispatch) => {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/art`, {
-        headers: { Authorization: `${token}`, data: { art: { id: id } } },
+        headers: { Authorization: `${token}` },
+        data: { art: { id } },
       })
       .then((response) => {
         dispatch({
@@ -61,5 +66,6 @@ export const deleteArt =
             art: { id: id },
           },
         });
-      });
+      })
+      .catch((error) => console.log('asdasd'));
   };

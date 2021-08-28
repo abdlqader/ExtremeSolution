@@ -1,37 +1,31 @@
 import React, { Fragment } from 'react';
-
-const UserTable = () => {
+import PropTypes from 'prop-types';
+import moment from 'moment';
+const UserTable = ({ users }) => {
   return (
     <Fragment>
       <thead className="bg-light">
         <tr>
-          <th>USER</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Role</th>
+          <th>Creation Date</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {users.map((user) => (
+          <tr key={user.id}>
+            <td>{user.username}</td>
+            <td>{user.phone}</td>
+            <td>{user.role}</td>
+            <td>{moment(user.creationDate).format('MMMM Do YYYY, h:mm a')}</td>
+          </tr>
+        ))}
       </tbody>
     </Fragment>
   );
 };
-
+UserTable.prototype = {
+  users: PropTypes.array.isRequired,
+};
 export default UserTable;

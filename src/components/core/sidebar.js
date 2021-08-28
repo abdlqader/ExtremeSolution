@@ -10,10 +10,10 @@ const SideBar = ({ changeView }) => {
         variant="outline-light"
         onClick={() => changeView(true)}
       >
-        <img src="assets/nav/art/supervised_user_circle.png" alt="Arts" />
+        <img src={'assets/nav/art/supervised_user_circle.png'} alt="Arts" />
       </Button>
       <Button onClick={() => changeView(false)} variant="outline-light">
-        <img src="/assets/nav/users/user_w.png" alt="Users" />
+        <img src={'/assets/nav/users/user@1x.svg'} alt="Users" />
       </Button>
     </div>
   );

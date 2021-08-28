@@ -28,7 +28,7 @@ export const artReducer = (state = initialState, action) => {
     case DELETE_ART:
       return {
         ...state,
-        arts: state.arts.filter((art) => art === action.payload.art.id),
+        arts: state.arts.filter((art) => art.id !== action.payload.art.id),
       };
     default:
       return state;
