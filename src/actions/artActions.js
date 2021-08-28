@@ -17,7 +17,7 @@ export const fetchArts = (token) => (dispatch) => {
 
 export const createArt = (token) => (dispatch) => {
   axios
-    .put(`${process.env.REACT_APP_API_URL}/art`, {
+    .post(`${process.env.REACT_APP_API_URL}/art`, {
       headers: { Authorization: `${token}` },
     })
     .then((response) => {
@@ -51,7 +51,7 @@ export const deleteArt =
   ({ token, id }) =>
   (dispatch) => {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/art`, {
+      .delete(`${process.env.REACT_APP_API_URL}/art`, {
         headers: { Authorization: `${token}`, data: { art: { id: id } } },
       })
       .then((response) => {
