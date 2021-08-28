@@ -8,7 +8,9 @@ in order to run the whole app user :
 
 ### `npm run dev`
 
-the app will run both on port 4200 ( react ) and 3000 ( server ) locally 
+the app will run both on port 4200 ( react ) and 3000 ( server ) locally
+Admin test accunt is username(Admin) - password(1234)
+Guest test account is username(Client) - password(1234)
 
 ### Important notes
 I gave it everything with the current time i had to recap and follow the best practices and still there was so much to do. its been a challenge and i learnt so much out of it
