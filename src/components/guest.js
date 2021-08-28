@@ -14,7 +14,8 @@ const Guest = ({ arts, token, fetchArts }) => {
     fetchArts(token);
   }, [fetchArts, token]);
   const pageChange = ({ selected }) => {
-    fetchArts({ token, filter: selected });
+    // fetchArts({ token, filter: selected });
+    console.log({ selected });
   };
   return (
     <div className="bg-light">
