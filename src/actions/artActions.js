@@ -9,7 +9,7 @@ export const fetchArts = (token) => (dispatch) => {
       dispatch({
         type: FETCH_ARTS,
         payload: {
-          art: response.data,
+          arts: response.data,
         },
       });
     });
