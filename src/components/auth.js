@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { authLogin } from '../actions/authActions';
+import { withRouter } from 'react-router-dom';
 
-const Auth = ({ authLogin }) => {
+const Auth = ({ authLogin, history, role }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const submit = (e) => {
     e.preventDefault();
-    authLogin({ username, password });
+    authLogin({ username, password, history });
   };
   return (
     <div className="bg">
@@ -56,4 +57,4 @@ const mapStateToProps = (state) => ({
   role: state.auth.role,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Auth));

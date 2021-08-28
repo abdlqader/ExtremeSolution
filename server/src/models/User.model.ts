@@ -2,19 +2,19 @@ import { Table, Model, Column, CreatedAt, UpdatedAt, Unique } from 'sequelize-ty
 
 export default interface User {
   id?: number;
-  name: string;
+  username: string;
   phone: string;
   password: string;
-  role : string;
+  role: string;
   creationDate?: Date;
   updatedOn?: Date;
 }
 
-@Table 
-export default class User extends Model{
+@Table
+export default class User extends Model {
   @Unique
   @Column
-  name!: string;
+  username!: string;
 
   @Column
   phone!: string;
@@ -32,5 +32,4 @@ export default class User extends Model{
   @UpdatedAt
   @Column
   updatedOn?: Date;
-
 }

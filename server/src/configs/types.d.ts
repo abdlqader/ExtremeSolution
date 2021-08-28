@@ -8,7 +8,12 @@ interface Request extends express.Request {
  
 interface Response extends express.Response {
 }
-export interface LoginCredentials{
-    name:string;
-    password:string;
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+export interface LoginResponse {
+  token: string;
+  role: string;
+  username: string;
 }

@@ -1,5 +1,5 @@
 import { Hash } from '../services/bcrypt';
-import { LoginCredentials } from '../configs/types';
+import { LoginCredentials, LoginResponse } from '../configs/types';
 import User from '../models/User.model';
 import { JWT } from '../services/jwtService';
 
@@ -16,11 +16,13 @@ export class UserController {
     }
   };
 
-  public login = async (credentials: LoginCredentials): Promise<string> => {
+  public login = async (
+    credentials: LoginCredentials
+  ): Promise<LoginResponse> => {
     try {
       let user = await User.findOne({
         where: {
-          name: credentials.name,
+          username: credentials.username,
         },
       });
 
@@ -29,11 +31,15 @@ export class UserController {
           credentials.password,
           user.password
         );
-        if (samePassword)
-          return this.jwt.issue({
-            payload: { id: user.id as number, role: user.role },
+        if (samePassword) {
+          let token: string = this.jwt.issue({
+            payload: {
+              id: user.id as number,
+              role: user.role,
+            },
           });
-        else
+          return { token, role: user.role, username: user.username };
+        } else
           throw {
             message: 'username or password is wrong',
           };

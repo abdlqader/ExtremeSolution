@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { logger } from '../core/logger/logger';
 import User from '../models/User.model';
 import { UserController } from '../controllers/userController';
-import { LoginCredentials } from '../configs/types';
+import { LoginCredentials, LoginResponse } from '../configs/types';
 
 export class AuthRoute extends RouteBase {
   userController = new UserController();
@@ -19,18 +19,20 @@ export class AuthRoute extends RouteBase {
       const result: String = await this.userController.create(user);
       res.status(200).send(result);
     } catch (e) {
-      logger.error("error creating user : ",e);
+      logger.error('error creating user : ', e);
       res.status(400).send(e.message);
     }
   };
 
   private login = async (req: Request, res: Response) => {
     try {
-      const credentials:LoginCredentials = req.body.credentials;
-      const result:string = await this.userController.login(credentials);
+      const credentials: LoginCredentials = req.body.credentials;
+      const result: LoginResponse = await this.userController.login(
+        credentials
+      );
       res.status(200).send(result);
     } catch (e) {
-      logger.error("error while logging in : ",e);
+      logger.error('error while logging in : ', e);
       res.status(400).send(e.message);
     }
   };
