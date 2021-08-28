@@ -1,19 +1,19 @@
+import { FilterParams } from '../configs/types';
 import Art from '../models/Art.model';
 
 export class ArtController {
-  public get = async (id: number): Promise<Art> => {
+  public get = async (
+    filter: FilterParams = { page: 1, perPage: 12 }
+  ): Promise<Art[]> => {
     try {
-      let art = await Art.findOne({
-        where: { id: id },
+      let art = await Art.findAll({
+        limit: filter.perPage,
+        offset: filter.page - 1,
       });
-      if (art) return art;
-      else
-        throw {
-          message: 'couldnt find the art',
-        };
+      return art;
     } catch (error) {
       throw {
-        message: 'couldnt find the art',
+        message: 'error listing arts',
       };
     }
   };
@@ -54,7 +54,7 @@ export class ArtController {
       await Art.destroy({
         where: { id: id },
       });
-      return 'Art Deleted'
+      return 'Art Deleted';
     } catch (error) {
       throw {
         message: 'couldnt delete the art',

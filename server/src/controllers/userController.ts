@@ -1,5 +1,9 @@
 import { Hash } from '../services/bcrypt';
-import { LoginCredentials, LoginResponse } from '../configs/types';
+import {
+  FilterParams,
+  LoginCredentials,
+  LoginResponse,
+} from '../configs/types';
 import User from '../models/User.model';
 import { JWT } from '../services/jwtService';
 
@@ -47,6 +51,27 @@ export class UserController {
         throw {
           message: 'username or password is wrong',
         };
+    } catch (error) {
+      throw error;
+    }
+  };
+  public list = async (
+    filter: FilterParams = { page: 1, perPage: 12 }
+  ): Promise<User[]> => {
+    try {
+      let list = User.findAll({
+        attributes: [
+          'id',
+          'username',
+          'phone',
+          'role',
+          'creationDate',
+          'updatedOn',
+        ],
+        limit: filter.perPage,
+        offset: filter.page - 1,
+      });
+      return list;
     } catch (error) {
       throw error;
     }

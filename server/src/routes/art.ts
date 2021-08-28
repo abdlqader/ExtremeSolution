@@ -1,6 +1,6 @@
 import { logger } from '../core/logger/logger';
 import { RouteBase } from '../core/routes/RouteBase';
-import { Request, Response } from '../configs/types';
+import { FilterParams, Request, Response } from '../configs/types';
 import { IsAuthorized } from '../middlewares/isAuth';
 import { IsAdmin } from '../middlewares/isAdmin';
 import Art from '../models/Art.model';
@@ -14,12 +14,11 @@ export class ArtRoute extends RouteBase {
     this.router.post('/art', IsAdmin, this.createArt);
     this.router.put('/art', IsAdmin, this.editArt);
     this.router.delete('/art', IsAdmin, this.deleteArt);
-    this.router.get('/users', IsAdmin, this.getUsers);
   }
   private getArt = async (req: Request, res: Response) => {
     try {
-      let art: number = req.body.art.id;
-      let result: Art = await this.artController.get(art);
+      let art: FilterParams = req.body.page;
+      let result: Array<Art> = await this.artController.get(art);
       res.status(200).send(result);
     } catch (e) {
       logger.error('error getting arts : ', e);
@@ -56,15 +55,6 @@ export class ArtRoute extends RouteBase {
       res.status(200).send(result);
     } catch (e) {
       logger.error('error deleting art : ', e);
-      res.status(400).send(e.message);
-    }
-  };
-
-  private getUsers = async (req: Request, res: Response) => {
-    try {
-      res.status(200).send('result');
-    } catch (e) {
-      logger.error('error getting users : ', e);
       res.status(400).send(e.message);
     }
   };
