@@ -68,7 +68,23 @@ h2 {
   margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
-
+.pagination {
+  display: inline-block;
+  width: 100%;
+  align-content: center;
+  
+}
+.paginate-li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination li.active{
+  background-color: #5541d7;
+  color: white;
+  border-radius: 5px;
+}
 /* STRUCTURE */
 .bg{
   background-image: url(/src/assets/login/bg.png);
