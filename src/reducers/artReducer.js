@@ -15,17 +15,20 @@ export const artReducer = (state = initialState, action) => {
     case NEW_ART:
       return {
         ...state,
-        art: action.payload.art,
+        arts: state.arts.push(action.payload.art),
       };
     case UPDATE_ART:
       return {
         ...state,
-        art: action.payload.art,
+        arts: state.arts.map((art) => {
+          if (art.id === action.payload.art) return action.payload.art;
+          else return art;
+        }),
       };
     case DELETE_ART:
       return {
         ...state,
-        art: action.payload.art,
+        arts: state.arts.filter((art) => art === action.payload.art.id),
       };
     default:
       return state;

@@ -18,10 +18,10 @@ export class ArtController {
     }
   };
 
-  public create = async (art: Art): Promise<string> => {
+  public create = async (art: Art): Promise<Art> => {
     try {
-      await Art.create(art);
-      return 'Created Art';
+      let result: Art = await Art.create(art);
+      return result;
     } catch (error) {
       throw {
         message: 'coudnt create the art',

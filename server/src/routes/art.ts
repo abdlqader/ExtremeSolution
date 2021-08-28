@@ -29,7 +29,7 @@ export class ArtRoute extends RouteBase {
   private createArt = async (req: Request, res: Response) => {
     try {
       let art: Art = req.body.art;
-      let result: string = await this.artController.create(art);
+      let result: Art = await this.artController.create(art);
       res.status(200).send(result);
     } catch (e) {
       logger.error('error creating art : ', e);
