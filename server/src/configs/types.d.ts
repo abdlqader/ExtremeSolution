@@ -17,3 +17,7 @@ export interface LoginResponse {
   role: string;
   username: string;
 }
+export interface FilterParams {
+  perPage: number;
+  page: number;
+}
