@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from './core/header';
 import Container from 'react-bootstrap/Container';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
 const Guest = ({ arts, token, fetchArts }) => {
-  const [pages, setPage] = useState(0);
+  // const [pages, setPage] = useState(0);
   useEffect(() => {
     fetchArts(token);
   }, [fetchArts, token]);
@@ -38,7 +38,7 @@ const Guest = ({ arts, token, fetchArts }) => {
           pageCount={5}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
-          initialPage={pages}
+          // initialPage={pages}
           onPageChange={(e) => pageChange(e)}
           containerClassName={'pagination'}
           activeClassName={'active'}
